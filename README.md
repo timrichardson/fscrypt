@@ -307,7 +307,22 @@ Defaults timestamp_timeout=60
 
 You should also increase the number of rounds that your system's passphrase
 hashing uses (though this doesn't increase security as much as choosing a strong
-passphrase).  To do this, find the line in `/etc/pam.d/passwd` that looks like:
+passphrase).  
+
+#### Ubuntu
+The configuration file is `/etc/pam.d/common-password`
+
+#### Other distributions
+The configuration file may be `/etc/pam.d/passwd`
+
+When you have found the correct file, find the line that refers to `pam_unix.so`.
+For example, it may look like:
+```
+password        [success=1 default=ignore]      pam_unix.so obscure sha512
+```
+
+or
+
 ```
 password	required	pam_unix.so sha512 shadow nullok
 ```
